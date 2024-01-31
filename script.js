@@ -207,3 +207,22 @@ console.log(x == newNum); // true
 // Strict comparison compares both the values and the data types
 console.log(x === newNum); //false
 
+// Math methods: floor, ceil, random, min, max
+// Math.floor
+// Math.floor() returns only the whole number part of a decimal (Not rounding up or down)
+let num1 = 9.64577
+console.log(Math.floor(num1)); //9
+
+console.log(Math.ceil(num1)); //10
+
+//Random
+// Math.random is used to generate random numbers from 0 to 9
+console.log(Math.random() * 10);
+const ranNum = (Math.random() * 1000000);
+const OTP = Math.floor(ranNum)
+console.log(`Enter your secret code ${OTP} to continue`);
+
+
+const die = (Math.random() * 6);
+console.log(Math.ceil(die));
+
