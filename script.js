@@ -26,7 +26,8 @@ console.log(stageName, typeof(stageName));
 const x = "55"
 const gravity= 9.8;
 
-console.log(x/gravity)
+console.log(x+gravity)
+console.log(x/gravity) //implicit type conversion of x to type Number
 
 // Boolean i.e True or False
 const isLoggedIn = true;
@@ -120,7 +121,7 @@ console.log(str3.concat(fullName))
 const concatString = str3 + fullName
 console.log(concatString);
 
-// Template Literals
+// Template Literals - to be Used instead of Concat
 const tem = `Hi there!, ${str3} ${fullName}, I am ${chioma.age} years old`
 console.log(tem);
 
@@ -129,8 +130,8 @@ console.log(school.split("a"));
 console.log(tem.split(","));
 
 // Slice method
-sliceText = `${tem.slice(0,30)} ...`
-console.log(sliceText);
+// sliceText = `${tem.slice(0,30)} ...`
+// console.log(sliceText);
 
 // Using Substring
 console.log(tem.substring(0,20));
@@ -152,7 +153,7 @@ console.log(10 % 6);
 // Assignment Operators
 // They include: =, +=, -=, /=
 
-const mySiblings = ["Nonye", "Chiamaka", "Chigozie"]
+const mySiblings = ["Chiamaka","Nonye", "Chigozie"]
 console.log(mySiblings);
 
 // +== and -==
@@ -195,14 +196,14 @@ if(age >= 18 || isAdult){
 }
 // !
 
-if(age >= 18 || isAdult && isMarried){
+if(age >= 18 || !isAdult && isMarried){
     console.log("You can drink Alcohol");
 }
 let pwd = "mypassword123#"
 if(pwd.length > 11 && pwd.includes("#")){
     console.log("Strong passowrd");
 }else{
-    console.log("Ypur passwor is not strong enough");
+    console.log("Ypur passworrd is not strong enough");
 }
 
 
@@ -264,7 +265,7 @@ console.log(Math.ceil(die));
 
 // // // Task 5
 // // // Create a variables called acctBal, atmPin. Using simple conditional statements, write a code that logs the following:
-// // // a) if user is authenticated, and atnPin is correct, it should log the message "Transaction successful! Your account balance is ----"
+// // // a) if user is authenticated, and atmPin is correct, it should log the message "Transaction successful! Your account balance is ----"
 // // // b) if user is not authenticated or incorrect atmPin, it should log the message "Transaction declined"
 
 // const acctBal = 100000
@@ -420,8 +421,8 @@ console.log(cars.length);
 // index
 const bmw = cars[0]
 const volvo = cars[1]
-const mercedes = cars[4]
-const toyota = cars[4]
+const mercedes = cars[2]
+const toyota = cars[3]
 const tesla = cars[4]
 const lambo = cars[5]
 
@@ -566,7 +567,7 @@ for(mark of marks){
 }
 
 const errCode = ['E', '@', '-', 'l', '@', 'e', 'a', '@','r','n','@','i','@','n','g']
-newArra =[]
+// newArra =[]
 // This is a corrupted word, clean it up to get the correct word, "E-learning"
 // for(const code of errCode){
 //      if (code != '@'){
@@ -578,7 +579,7 @@ newArra =[]
 
 let word = []
 let bug = "@"
-for(w of errCode){
+for(let w of errCode){
     if (w !== "@"){
         word.push(w)
     }
@@ -586,3 +587,192 @@ for(w of errCode){
 console.log(word);
 const cleanedCode = word.join("")
 console.log(cleanedCode);
+
+console.log(typeof word);
+
+let num = '10'
+let numInt = parseInt(num)
+console.log(numInt) // 10
+console.log(typeof numInt);
+
+
+// Functions
+// Creating Functions:
+// Function Declaration method Syntax
+// function nameOfFunction(){
+//     run this code
+// }
+// Example
+// Hoisting of function - calling of function before declaration. (NB) Only works with function declaration method
+sayMyName()
+function sayMyName(){
+    console.log("Your name is Chioma");
+}
+// Calling or invoking of a function
+sayMyName();
+sayMyName();
+sayMyName();
+// Function expression method Syntax :The function stores everything in a variable
+// const nameOfFunction = function(){
+//     run this code
+// }
+// Example
+const showMessage = function(){
+    console.log("This is a function expression");
+}
+showMessage();
+showMessage();
+// Arrow function method
+// const login = () => {
+//     code goes here
+// }
+// Example
+const login = () => {
+    if(!isLoggedIn){
+        console.log("Logged in successfully");
+    }
+    else{
+        console.log("Access denied");
+    }
+    
+}
+login()
+login()
+
+// A function that has parameters will accept arguments
+const greetMe = (myName) => {
+    console.log(`Hello ${myName}`);
+}
+greetMe("chioma")
+// OR
+// function greetMe(name ="name" (working as a default value"){
+//     console.log(`Hello ${name}`);
+// }
+// greetMe("chioma")
+
+// const addNum = (a,b) => console.log(a + b); Another way to write the code below
+const addNum = (a = 0,b = 0) =>{
+    console.log(`${a + b}`);
+}
+addNum(3,4)
+
+// Task
+// Create a function that takes an array as an argument, sort the array items and change them uppercase
+
+// Solution
+const carss = ["BMW", "Volvo", "Mercedes","Toyota","Tesla","lambo","Ferrari","Porsche","dodge"]
+let newCars=[]
+const sortArr = (arr) =>{
+    for(const elem of arr){
+        newCars.push(elem.toUpperCase())
+        
+    }
+    console.log(newCars);
+    newCars.sort()
+    console.log(newCars);
+}
+sortArr(carss);
+
+const carrs = ["BMW", "Volvo", "Mercedes","Toyota","Tesla","lambo","Ferrari","Porsche","dodge"]
+let newCarss=[]
+const sortArray = (arr) =>{
+    for(const item of arr){
+        if(item.endsWith("a")){
+            newCarss.push(item)
+        }
+    }
+    console.log(newCarss);
+    
+}
+sortArray(carrs);
+
+// Javascript Challenge 1
+// -Create a function ‘maxProductOfThree’
+// -The function takes in array of numbers as arguments, i.e arrNum
+// -It selects 3 numbers from the array that will give the maximum result when multiplied. i.e from arrNum,
+//  it’ll pick a, b, c and return their product axbxc, if that’s the three numbers from ‘arrNum’  that will give the higest results.
+// -Example of using the function:
+// maxProductOfThree(arrNum)    
+// // 12345 (maximum product)
+
+// NB
+// -Check for the number of items in the array, which must not be less than three numbers.
+// -Check if items in the array is not a number. You can only use a number for the computation.
+
+const maxProductOfThree = (arrNum) =>{
+    //Check if there are at least three items in the array 
+    if(arrNum.length < 3){
+        return console.log("Array should have at least three items");
+    }
+
+    // Check if the items in the array are numbers
+    const numItems = arrNum.filter((n) => typeof n === "number")
+    console.log(numItems);
+
+
+    //Check if there are at least three items in the array 
+    if(numItems.length < 3){
+        return console.log("Array should have at least three numbers");
+    }
+
+    // Array must be sorted in ascending order beofre the naximum number can be gotten
+    numItems.sort((a,b)=> a-b);
+    console.log(numItems);
+
+    // To calculate max
+    const n = numItems.length;
+    const maxProduct1 = numItems[n-1] * numItems[n-2] * numItems[n-3]
+
+    const maxProduct2 = numItems[0] * numItems[1] * numItems[n-1]
+
+    // Compare the two products and return the maximum
+    const result = Math.max(maxProduct1,maxProduct2);
+    console.log(`The maximum product is ${result}`);
+}
+const arrNum = [-6,-7,8,7,9,true,"fdgdg",false]
+maxProductOfThree(arrNum)
+
+// Modules import and export
+import {outSideArr, externalFunction} from "./external.js";
+console.log(outSideArr);
+console.log(externalFunction(2,5));
+
+import toDoList from "./data.js";
+console.log(toDoList);
+import { sthelse } from "./data.js";
+console.log(sthelse);
+
+// Object Properties/Methods
+const bio ={
+    studentID:111,
+    firstName:"chioma",
+    lastName: "Okeke",
+    academy:"TSA",
+    cohort:"TSA/DEC2023",
+    course: "JSF",
+    tutor: "Mr. Blard",
+    isCompleted:false,
+    read: function(){
+        return `Hi, my name is ${this.firstName} ${this.lastName}, I am a student of ${this.academy} studying ${this.course}. My tutor is ${this.tutor}`
+    }
+}
+// Accessing object
+console.log(bio);
+console.log(bio.cohort);
+console.log(bio.read());
+
+// How to add a new property in the bio object
+bio.qualification = ["bsc","phd","msc"]
+
+// Destructuring Objects - means pulling out properties from objects
+const {firstName, academy, studentID}= bio;
+console.log(firstName, academy,studentID);
+
+// Spread Operator: You can combine properties form one object to another using the spread operator
+console.log(myObject);
+const spreadData = {...myObject, ...bio}
+console.log(spreadData);
+
+// Call back functions
+// Higher order array functions
+
