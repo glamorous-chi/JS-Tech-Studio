@@ -208,11 +208,11 @@ if(pwd.length > 11 && pwd.includes("#")){
 
 
 // Comparison Operators: ==, ===, !=, <, >, >=, <=,!==, etc
-// They include: == known as loose comparison: compares the values of the variables and not data types
+// They include: (==) is known as loose comparison: compares the values of the variables and not data types
 console.log(x); // "55"
 let newNum = 55
 console.log(x == newNum); // true
-// Strict comparison compares both the values and the data types
+// Strict comparison (===) compares both the values and the data types
 console.log(x === newNum); //false
 
 // Math methods: floor, ceil, random, min, max
@@ -220,7 +220,7 @@ console.log(x === newNum); //false
 // Math.floor() returns only the whole number part of a decimal (Not rounding up or down)
 let num1 = 9.64577
 console.log(Math.floor(num1)); //9
-
+// Math.ceil() rounds up to the nearest whole number regardless of the decimal parts
 console.log(Math.ceil(num1)); //10
 
 //Random
@@ -459,14 +459,14 @@ console.log(cars);
 // splice
 // Syntax: splice(startIndex,numbOfDeletedItems, addItems)
 // Uisng splice to delete items
-const del3Cars = cars.splice(2,3)
+const del3Cars = cars.splice(2,3) //Deletes three items starting from index 2
 console.log(cars);
 // Using splice to add items
-const addCars = cars.splice(2,0,"mazda", "Kia", "Honda")
+const addCars = cars.splice(2,0,"mazda", "Kia", "Honda") // Deletes no item, and adds three items starting from index 2
 console.log(cars);
 
 // slice
-const top3Cars = cars.slice(0,3)
+const top3Cars = cars.slice(0,3) //Slices the array from index 0 to 2 excluding index 3
 console.log(top3Cars);
 
 const nextTopCars = cars.slice(3,6)
@@ -508,7 +508,7 @@ console.log(descending);
 //     console.log(`I am a Fullstack web developer ${i}`);
 // }
 
-// Using loop create a multiplication times for 12  table 
+// Using loop create a multiplication times for 12 table 
 // for(let i=1; i<=12; i++){
 //     if(i % 2 !== 0){
 //         continue
@@ -604,11 +604,11 @@ console.log(typeof numInt);
 // }
 // Example
 // Hoisting of function - calling of function before declaration. (NB) Only works with function declaration method
-sayMyName()
+sayMyName() // An example of hoisting a function before declaration
 function sayMyName(){
     console.log("Your name is Chioma");
 }
-// Calling or invoking of a function
+// Calling or invoking of a function after declaration
 sayMyName();
 sayMyName();
 sayMyName();
@@ -639,20 +639,20 @@ const login = () => {
 login()
 login()
 
-// A function that has parameters will accept arguments
+// A function that has parameters will accept arguments when invoked
 const greetMe = (myName) => {
     console.log(`Hello ${myName}`);
 }
 greetMe("chioma")
 // OR
-// function greetMe(name ="name" (working as a default value"){
+// function greetMe(name ="name" ("name" here is working as a default value){
 //     console.log(`Hello ${name}`);
 // }
 // greetMe("chioma")
 
 // const addNum = (a,b) => console.log(a + b); Another way to write the code below
 const addNum = (a = 0,b = 0) =>{
-    console.log(`${a + b}`);
+    console.log(`${a + b}`); 
 }
 addNum(3,4)
 
@@ -723,6 +723,7 @@ const maxProductOfThree = (arrNum) =>{
     const n = numItems.length;
     const maxProduct1 = numItems[n-1] * numItems[n-2] * numItems[n-3]
 
+    // For negative values 
     const maxProduct2 = numItems[0] * numItems[1] * numItems[n-1]
 
     // Compare the two products and return the maximum
@@ -764,15 +765,215 @@ console.log(bio.read());
 // How to add a new property in the bio object
 bio.qualification = ["bsc","phd","msc"]
 
-// Destructuring Objects - means pulling out properties from objects
+// Destructuring Objects - means extracting or pulling out properties from objects, the order doesn't matter
 const {firstName, academy, studentID}= bio;
 console.log(firstName, academy,studentID);
+
+// Destructuring Arrays - means extracting or pulling out properties from arrays (NB) The order matters
+const myArr = ["My data", "Hello world", "Thank you"]
+const [data, messgae] = myArr //data and message are just parameters that match to index 0 and 1 of the myArr array.
 
 // Spread Operator: You can combine properties form one object to another using the spread operator
 console.log(myObject);
 const spreadData = {...myObject, ...bio}
 console.log(spreadData);
 
-// Call back functions
-// Higher order array functions
 
+// Call back functions - It is paseed as an argument to another function
+// Examples
+function fn1 (){
+    // console.log("This is a callback function");
+}
+function fn2 (cb){
+    return cb()
+}
+// fn2(fn1)
+
+// Read on JS Date functions
+// setTimeout- is a JS function that takes in a callback function
+// Syntax
+// setTimeout(callback, timeout) NB Timeout is in milliseconds
+
+setTimeout(fn1,5000)
+
+// setInterval
+// setInterval(callback,interval) It sets the interval the output will display, so at that interval, it will keep displaying
+setInterval(fn1,2000)
+
+
+// Higher order array functions take callback functions
+// forEach, map, filter,etc
+
+// for each syntax
+// arr.forEach(call back function)
+// console.log(toDoList);
+
+// for each
+toDoList.forEach((item) =>{
+    // write your code
+    console.log(`${item.text} ${item.time}`);
+})
+
+// Map - It gives you all your items in an array
+const mappedList = toDoList.map((item) => item)
+const mappedTextList = toDoList.map((item) => item.text)
+const slicedItems = mappedTextList.slice(0,3)
+console.log(mappedList);
+console.log(mappedTextList);
+console.log(slicedItems);
+
+// Filter - it filters and returns only the item that passes the condition specified. It works with Booleans/conditionals
+const completed = toDoList.filter((item) => item.isDone)
+console.log(completed);
+
+//Other array methods include: sort,find,reduce,some,etc
+
+const total = (something) => {
+    console.log(`Result is ${something}`);
+}
+const myCalculator = (num1,num2,aCallback) => {
+    const sum = num1 + num2
+    // return sum
+    aCallback(sum)
+}
+
+myCalculator(5,5,total)
+
+// Promises
+// Creating a Promise
+const myPromise = new Promise((resolve,reject)=>{
+    if(isLoggedIn){
+        resolve("Promise fulfilled");
+    }
+    else{
+        reject("Promise rejected");
+    }
+    
+})
+
+// Consuming Promises
+myPromise.then((result) => {
+    console.log(result);
+})
+// .catch((error) => console.log(error)) it displays when there is an error i.e for the else part of myPromise
+
+// Fetch API - Used to fetch data from a server or API, and is a promised based API because it returns a promise, 
+// and the promise can be consumed using the (.then) method. It accepts a URL (a backend link)
+// console.log(window); to see fetch
+const url1 = "https://restcountries.com/v2/all"
+fetch(url1)
+    .then((response) =>response.json()) //parse it (clean it) so that it can be understood by JS, to be stringified, as a JSON format for the backend to understand.
+    .then((data) => {
+        // console.log(data);
+        // console.log(data.filter((item) => item.region === "Africa")); 
+        const africa = data.filter((item) => item.region === "Africa")
+        // africa.forEach((country) => console.log(`Name:${country.name} Population:${country.population} Abbreviation:${country.cioc}`));
+        // africa.forEach((country) => {
+        //     li.innerHTML += `<li><strong>${country.name}</strong> (${country.cioc}) <strong>Population:</strong> ${country.population}</li>`;
+        //   });
+    });
+
+
+// Wednesday/7/2/2024
+
+const url2 = "https://jsonplaceholder.typicode.com/posts"
+// fetch(url2)
+//     .then((response)=> response.json())
+//     .then((data)=> {
+//         console.log(data.slice(0, 20));
+//     }
+// ) 
+// async/await
+// async function
+let isLoading = true;
+async function fetchPost(url,start,end){
+    try{
+    const res = await fetch(url);
+    const data = await res.json();
+    // console.log(data);
+
+    // if(data){
+    //     return 
+    // }
+    //     if(isLoading){
+    //         return "Loading..."
+    //     }
+    const slicedData =  data.slice(start,end)
+    return slicedData
+    // console.log(slicedData);
+    }
+    catch (error){
+        console.log("Error fetching post", error);
+    }
+}
+const page1 = await fetchPost(url2,0,20)
+console.log(page1);
+const page2 = await fetchPost(url2,20,40)
+console.log(page2);
+const page3 = await fetchPost(url2,40,60)
+console.log(page3);
+const page4 = await fetchPost(url2,60,80)
+console.log(page4);
+const page5 = await fetchPost(url2,80,100)
+console.log(page5);
+
+
+// DOM 
+
+// Write a loop that makes seven calls to console.log to output the following triangle:
+
+// #
+// ##
+// ###
+// ####
+// #####
+// ######
+// #######
+    
+for(let i =1; i < 8; i++){
+    console.log("#".repeat(i));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// JavaScript challenge 2
+// -Create a function that checks through an array and identifies repeated entries, 
+// and clean up the entries of the array to contain only unique items.
+// -It should also count the number of the repeated entries in the original array.
+// -Example:
+// let myArr = [1,2,3,2,4,3,2]
+// cleanUpArray(myArr);
+// “2” appeared 3 times
+// “3” appeared 2 times 
+
+//Cleaned array = [1, 2, 3, 4]
+
+// let oldArr = [1,2,3,2,4,3,2]
+// const cleanArray = []
+// const cleanArr = (arr) => {
+//     const sortedArray = arr.sort((a,b)=>a-b)
+//     sortedArray.forEach((item)=>cleanArray.push(item))
+//     console.log(cleanArray);
+    
+// }
+// cleanArr(oldArr)
