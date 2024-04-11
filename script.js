@@ -800,7 +800,6 @@ setTimeout(fn1,5000)
 // setInterval(callback,interval) It sets the interval the output will display, so at that interval, it will keep displaying
 setInterval(fn1,2000)
 
-
 // Higher order array functions take callback functions
 // forEach, map, filter,etc
 
@@ -862,6 +861,9 @@ myPromise.then((result) => {
 // console.log(window); to see fetch
 const url1 = "https://restcountries.com/v2/all"
 fetch(url1)
+// Response: json() method
+// It returns a promise which resolves with the result of parsing the body text as JSON .
+//  Note that despite the method being named json() , the result is not JSON but is instead the result of taking JSON as input and parsing it to produce a JavaScript object
     .then((response) =>response.json()) //parse it (clean it) so that it can be understood by JS, to be stringified, as a JSON format for the backend to understand.
     .then((data) => {
         // console.log(data);
